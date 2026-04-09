@@ -1,0 +1,9 @@
+Artificial Intelligence is transforming industries.
+Machine learning is a subset of AI.
+Semantic search improves retrieval quality.
+Vector databases store embeddings efficiently.
+Fine tuning is the process of adapting a pre trained model to specific tasks.
+Cristiano Ronaldo is a Portuguese football player who plays as a forward.
+Virat Kohli is an Indian cricketer and former captain of the Indian team.
+Large language models understand context in text.
+Embeddings convert text into numerical vectors.
