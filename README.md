@@ -8,6 +8,7 @@ This project implements a Retrieval-Augmented Generation (RAG) system that perfo
 * Cosine similarity based retrieval
 * Top-k document selection
 * Offline LLM using Ollama (Llama3)
+* Streamlit Web UI
 * No API key required
 * Fully local pipeline
 
@@ -23,7 +24,8 @@ semantic-search-rag/
 └── src/
     ├── build_index.py
     ├── search.py
-    └── rag.py
+    ├── rag.py
+    └── app.py
 ```
 
 ## Installation
@@ -38,11 +40,19 @@ Install Ollama and pull model:
 ollama pull llama3
 ```
 
-## Run
+## Run (CLI Version)
 
 ```bash
 python src/rag.py
 ```
+
+## Run (Web UI)
+
+```bash
+streamlit run src/app.py
+```
+
+Then open the browser and ask questions interactively.
 
 ## Example
 
@@ -66,6 +76,7 @@ Semantic search improves retrieval by understanding meaning...
 * Scikit-learn
 * Ollama
 * Llama3
+* Streamlit
 
 ## Author
 
