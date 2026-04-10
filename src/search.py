@@ -1,35 +1,20 @@
 from sentence_transformers import SentenceTransformer
+import faiss
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-import os
 
-# Load model
-model = SentenceTransformer('all-MiniLM-L6-v2')
+# load documents
+documents = open("data/documents.txt", "r", encoding="utf-8").read().split("\n")
 
-# Paths
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-data_path = os.path.join(BASE_DIR, "data", "documents.txt")
-emb_path = os.path.join(BASE_DIR, "data", "embeddings.npy")
+# load model
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
-# Load data
-with open(data_path, 'r', encoding='utf-8') as f:
-    documents = [line.strip() for line in f.readlines()]
+# load FAISS index
+index = faiss.read_index("data/faiss.index")
 
-embeddings = np.load(emb_path)
+def search(query, k=3):
+    query_embedding = model.encode([query]).astype("float32")
 
-# Query
-query = input("Enter your query: ")
+    distances, indices = index.search(query_embedding, k)
 
-# Encode query
-query_embedding = model.encode([query])
-
-# Similarity
-similarities = cosine_similarity(query_embedding, embeddings)[0]
-
-# Top 3 results
-top_k = 3
-top_indices = similarities.argsort()[-top_k:][::-1]
-
-print("\nTop matches:")
-for idx in top_indices:
-    print("-", documents[idx])
+    results = [documents[i] for i in indices[0]]
+    return results
